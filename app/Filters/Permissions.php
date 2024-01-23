@@ -8,14 +8,14 @@ class Permissions implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        /* if (!session()->get('isLoggedIn'))
-        {
-            return redirect() -> to('/auth/signin');
-        }
-        
-        return; */
-        return redirect() -> to ('?back=' . implode($arguments) );
-        //không làm gì cả
+        $auth = new GroupModels();
+        if(!$auth->isPermissions($arguments))
+            return redirect()
+            ->back()
+            ->with('msg_error', 'Bạn không có quyền thực hiện thao tác này.');
+
+        // Nếu không, cho phép tiếp tục xử lý yêu cầu
+        //return ;
     }
     
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)

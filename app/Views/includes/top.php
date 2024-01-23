@@ -77,7 +77,7 @@
 
 
                 <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="dropdownUser">
-                    <a href="<?= base_url('all/employees/infomation/') . (isset($info) && isset($info['id_employee'])) ? $info['id_employee'] : '4' ?>"
+                    <a href="<?= (isset($info) && isset($info['id_employee'])) ? base_url('all/employees/infomation/') . $info['id_employee'] : '' ?>"
                         class="dropdown-item p-2">
                         <i class="fa-regular fa-user"></i>
                         Thông tin cá nhân

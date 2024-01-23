@@ -35,14 +35,15 @@ ul.reg-check li.text-danger::before {
             <div class="lock-image col-12 col-md-6"></div>
             <div class="login-form col-12 col-md-6 p-3">
                 <h3 class="fw-bold mb-3">Login</h3>
+
+                <label for="username">Username</label>
                 <div class="form-group mb-3">
-                    <label for="username">Username</label>
                     <input class="form-control" type="text" name="username" id="username" placeholder="Tên tài khoản"
                         autocomplete="on" required>
                 </div>
 
+                <label for="password">Password</label>
                 <div class="form-group password mb-3">
-                    <label for="password">Password</label>
                     <input class="form-control" type="password" name="password" id="password" placeholder="Mật khẩu"
                         required>
                     <i class="fa-solid fa-eye"></i>

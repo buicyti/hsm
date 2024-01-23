@@ -13,10 +13,24 @@ $routes->group('/auth', ['namespace' => 'App\Controllers\Auth'], function ($rout
     $routes->get('/', 'Login::index');
     $routes->get('signin', 'Login::index');
     $routes->get('signout', 'Logout::logoutAuth');
+    $routes->group('setting', function ($routes) {
+        $routes->get('/', 'Setting::index');
+        $routes->post('changepassword', 'Setting::changepassword');
+    });
     $routes->post('signin/loginSubmit', 'Login::submitLogin');
 });
 
-$routes -> group('all', ['filter' => 'auth'], function($routes){
+$routes->group('/permission', ['namespace' => 'App\Controllers\Auth', 'filter' => 'groups:superadmin'], function ($routes) {
+    $routes->get('/', 'Permission::index');
+    $routes->post('postListEmp', 'Permission::datatablesListEmp');
+    $routes->group('action', function ($routes) {
+        $routes->get('active', 'Permission::actionActive');
+        $routes->get('resetpassword', 'Permission::actionResetPassword');
+        $routes->post('updatepermission', 'Permission::actionUpdatePermission');
+    });
+});
+
+$routes -> group('/all', ['filter' => 'auth'], function($routes){
     $routes->group('employees', ['namespace' => 'App\Controllers\All', 'filter' => 'groups:superadmin, all, employees'], function($routes){
         $routes->get('/', 'EmployeeControler::index');
         //$routes->get('infomation', 'EmployeeControler::viewInfomation1');

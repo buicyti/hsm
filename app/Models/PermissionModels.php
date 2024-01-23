@@ -2,22 +2,23 @@
 namespace App\Models;  
 use CodeIgniter\Model;
   
-class GroupModels extends Model{
-    protected $table = 'auth_groups';
+class PermissionModels extends Model{
+    protected $table = 'auth_permissions';
     protected $primaryKey = 'id';
     protected $allowedFields = [
         'user_name',
-        'user_group',
+        'user_permission',
         'created_at'
     ];
 
 
-    public function isGroups($arrGroup):bool{
+    //kiểm tra bản thân có quyền ko
+    public function isPermissions($arrPermission):bool{
         $my_user = session()->get('name');
         
         return $this->select('id')
         ->where('user_name', $my_user)
-        ->whereIn('user_group', $arrGroup)
+        ->whereIn('user_permission', $arrPermission)
         ->countAllResults();
     }
 

@@ -52,7 +52,7 @@
         <div class="background-image-maker py-5"></div>
         <div class="position-relative px-3 py-5">
             <div class="media d-md-flex d-block">
-                <img src="<?= base_url() ?>public/images/avatars/<?= (isset($employees) && isset($employees['id_employee'])) ? $employees['id_employee'] : '0';?>.jpg"
+                <img src="<?= (isset($employees) && isset($employees['avatar_url'])) ? $employees['avatar_url'] : '';?>"
                     alt="<?= (isset($employees) && isset($employees['name_employee'])) ? $employees['name_employee'] : 'Alex Ferguson';?>"
                     class="img-fluid rounded-circle" style="width: 150px; aspect-ratio: 1/1;" />
 

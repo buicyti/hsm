@@ -261,7 +261,11 @@ main {
 
 
         <script type="text/javascript">
-        var content = `<a href="<?= base_url('/auth/signout') ?>">Đăng xuất</a>`;
+        var content = `<div class="chacogivui">
+            <a href="<?= base_url('permission') ?>">Phân quyền</a>
+             | 
+            <a href="<?= base_url('auth/signout') ?>" class="text-danger">Đăng xuất</a>
+        </div>`;
         $('footer').append(content);
 
         $('input[type=radio][name="pcss3t"]').change(function() {

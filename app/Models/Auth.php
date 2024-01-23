@@ -9,7 +9,7 @@ class Auth extends Model{
         'user_name',
         'user_pass',
         'id_employee',
-        'user_status',
+        'user_lever',
         'user_active',
         'created_at',
         'updated_at',

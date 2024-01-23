@@ -8,6 +8,6 @@ class Logout extends BaseController
     public function logoutAuth() {
         $session = session();
         $session->destroy();
-        return redirect()->to('/auth/signin');
+        return redirect()->to(base_url('/auth/signin'));
     }
 }

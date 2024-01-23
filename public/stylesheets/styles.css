@@ -180,7 +180,7 @@ footer {
     z-index: 10;
 }
 
-footer a {
+footer .chacogivui {
     position: absolute;
     right: 30px;
     top: 50%;
@@ -411,12 +411,14 @@ table.table-bordered.dataTable {
 
 .form-group.password {
     position: relative;
+    padding: 0;
 }
 
 .form-group.password i {
     position: absolute;
-    top: 35px;
+    top: 50%;
     right: 10px;
+    transform: translateY(-50%);
 }
 
 .my-form-group {
@@ -728,7 +730,7 @@ table.table-bordered.dataTable {
     justify-content: center;
 }
 
-.lockscreen .login-form .form-group label {
+.lockscreen .login-form label {
     display: inline-block;
     margin-bottom: 0.2rem;
     font-weight: 700;

@@ -10,11 +10,11 @@ class Groups implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $auth = new GroupModels();
-        if(!$auth->checkGroups($arguments))
+        if(!$auth->isGroups($arguments))
             return redirect()
             //->to('')
             ->back()
-            ->with('msg', 'Bạn không được phép truy cập vào mục này.');
+            ->with('msg_error', 'Bạn không được phép truy cập vào mục này.');
 
         // Nếu không, cho phép tiếp tục xử lý yêu cầu
         //return ;

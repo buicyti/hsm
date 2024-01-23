@@ -8,9 +8,10 @@ class Login extends BaseController
 {
     public function index()
     {
-        /* if (session()->get('isLoggedIn')) {
-            return redirect()->to('/');
-        } */
+        //nếu đang đăng nhập rồi thì đăng xuất ra ngoài
+        if (session()->get('isLoggedIn')) {
+            return redirect()->to(base_url('/auth/signout'));
+        }
         
         return view('Auth/Login');
     }
@@ -49,8 +50,19 @@ class Login extends BaseController
             $data = $auth->where('user_name', $username)->first();
             
             if($data){
-                $pass = $data['user_pass'];
-                $authenticatePassword = password_verify($password, $pass);
+                $authenticatePassword = password_verify($password, $data['user_pass']);
+                if(!$authenticatePassword){
+                    return $this->response->setJSON([
+                        'error' => true,
+                        'message' =>  'Sai mật khẩu!'
+                    ]);
+                }
+                if($data['user_active'] != "1"){
+                    return $this->response->setJSON([
+                        'error' => true,
+                        'message' =>  'Tài khoản chưa được kích hoạt hoặc đã bị khoá!'
+                    ]);
+                }
                 if($authenticatePassword){
                     $ses_data = [
                         'name' => $data['user_name'],
@@ -60,20 +72,15 @@ class Login extends BaseController
                     return $this->response->setJSON([
                         'error' => false
                     ]);
-            
-            }else{
+
+                }
+            }
+            else {
                 return $this->response->setJSON([
                     'error' => true,
-                    'message' =>  'Sai mật khẩu!'
+                    'message' => 'Không tồn tại tài khoản này!'
                 ]);
             }
-        }
-        else {
-            return $this->response->setJSON([
-                'error' => true,
-                'message' => 'Không tồn tại tài khoản này!'
-            ]);
-        }
             
         }
         else{

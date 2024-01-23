@@ -31,13 +31,26 @@ class EmployeeModels extends Model{
         'created_at'
     ];
 
+    
+
+    public function checkAvatar($id){
+        $filename = ROOTPATH . 'public\\images\\avatars\\' . $id . '.jpg';
+        if (file_exists($filename))
+            return base_url('public/images/avatars/' . $id . '.jpg');
+        else
+            return base_url('public/images/default/default-user-icon.png');
+    }
+
     public function getIDEmployees($id){
-        return $this->select('*')
-        ->where('id_employee', $id)
+        $employee = $this->select('*')
         ->whereIn('part', $this->getPart())
+        ->where('id_employee', $id)
         ->get()
         ->getRowArray();
-        //->findAll();
+
+        if($employee != null) $employee['avatar_url'] = $this->checkAvatar($employee['id_employee']); //nếu có dữ liệu thì kiểm tra xem có ảnh đại diện không
+        
+        return $employee;
     }
 
     
@@ -46,7 +59,7 @@ class EmployeeModels extends Model{
         $arrGroup = ['superadmin'];//liệt kê các nhóm đc lấy tất cả tên part
         $group = new GroupModels();
 
-        if($group->checkGroups($arrGroup)){
+        if($group->isGroups($arrGroup)){
             $query = $this->select('part')
             ->groupBy('part')
             ->get();

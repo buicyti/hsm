@@ -44,12 +44,7 @@ const getFetch = (link, jsonData) => fetch(link, {
     body: jsonData
 }).then(res => {
     if (res.ok) return res.json();
-    return {
-        error: err
-    }
+    return res;
 }).catch(err => {
-    console.error(err)
-    return {
-        error: err
-    }
+    return err;
 })

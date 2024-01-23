@@ -4,7 +4,7 @@
 $minPhpVersion = '7.4'; // If you update this, don't forget to update `spark`.
 if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
     $message = sprintf(
-        'Your PHP version must be %s or higher to run CodeIgniter. Current version: %s',
+        'Phiên bản PHP của bạn phải từ %s trở lên để chạy CodeIgniter. Phiên bản hiện tại của bạn: %s',
         $minPhpVersion,
         PHP_VERSION
     );
@@ -39,11 +39,11 @@ $paths = new Config\Paths();
 // Location of the framework bootstrap file.
 require rtrim($paths->systemDirectory, '\\/ ') . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-// Load environment settings from .env files into $_SERVER and $_ENV
+// Tải cài đặt môi trường từ tệp .env vào $_SERVER và $_ENV
 require_once SYSTEMPATH . 'Config/DotEnv.php';
 (new CodeIgniter\Config\DotEnv(ROOTPATH))->load();
 
-// Define ENVIRONMENT
+// Định nghĩa ENVIRONMENT
 if (! defined('ENVIRONMENT')) {
     define('ENVIRONMENT', env('CI_ENVIRONMENT', 'production'));
 }

@@ -10,7 +10,7 @@
     <meta name="description" content="Design by Engineer Team @2023">
     <meta name="author" content="Tư Đồ">
     <meta name="keyword" content="Học CI4 với tui đi">
-    <title>EM</title>
+    <title><?= isset($title) ? 'EM - ' . $title : 'EM' ?></title>
 
     <link rel="stylesheet" href="<?= base_url('public/vendor/fontawesome/css/all.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/vendor/bootstrap/css/bootstrap.min.css') ?>">

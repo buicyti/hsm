@@ -47,18 +47,9 @@ div.dataTables_scrollHeadInner table.table-bordered tr th:first-child {
 }
 </style>
 
-<div class="row">
-    <div class="col-12 align-self-center">
-        <div class="mt-2 py-3 align-self-center d-flex">
-            <h4 class="mb-0">Danh sách nhân viên</h4>
-            <ol class="ms-auto breadcrumb bg-transparent align-self-center m-0 p-0">
-                <li class="breadcrumb-item">Nhân viên</li>
-                <li class="breadcrumb-item">Thông tin</li>
-                <li class="breadcrumb-item active"><a href="#">Xem</a></li>
-            </ol>
-        </div>
-    </div>
-</div>
+
+<?php include_once('app\Views\includes\breadcrumb.php') ?>
+
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <input type="text" class="form-control border-0" id="searchTable" placeholder="Tìm kiếm ...">
@@ -173,7 +164,6 @@ div.dataTables_scrollHeadInner table.table-bordered tr th:first-child {
                         <div class="card-body">
                             <div class="d-flex flex-column text-center">
                                 <img src="<?= base_url('public/images/default/default-user-icon.png') ?>"
-                                    onerror="this.src='<?= base_url('public/images/default/default-user-icon.png') ?>'"
                                     class="img-thumbnail rounded-circle mb-3" alt="hihi" />
                                 <strong class="fs-4 pb-3">Alex Ferguson</strong>
                                 <span class="fs-6 pb-3 text-secondary">1040001</span>
@@ -379,7 +369,7 @@ $('#searchTable').change(function(event) {
 listEmployees.on('click', 'tbody tr td:not(:last-child)', function() {
     const empMd = $('#employeeModal .modal-dialog .modal-content .modal-body');
     var d = listEmployees.row($(this).parents()).data();
-    $('.col-12.col-md-5 img', empMd).attr('src', '/images/avatars/' + d.id_employee + '.jpg')
+    $('.col-12.col-md-5 img', empMd).attr('src', d.avatar_url)
     $('.col-12.col-md-5 img', empMd).attr('alt', d.name_employee)
     $('.col-12.col-md-5 strong', empMd).html(d.name_employee)
     $('.col-12.col-md-5 span:eq(0)', empMd).html(d.id_employee)
